@@ -2,7 +2,10 @@
 import java.util.Enumeration;
 import java.util.Hashtable;
 
-public class Library extends Building{
+
+//what methods have incorrect signatures
+
+public class Library extends Building implements LibraryRequirements{
   /**
    * Class attributes
    */
@@ -44,7 +47,7 @@ public class Library extends Building{
      * Changes the checkout status of a book from false to true
      * @param title
      */
-    public void checkout(String title){
+    public void checkOut(String title){
       collection.replace(title, false, true);
     }
   
@@ -62,8 +65,12 @@ public class Library extends Building{
      * @return Boolean true if library has the book and false if the library doesn't have it
      */
     public boolean containsTitle(String title){
-      return collection.contains(title);
-    }
+      if(this.collection.containsKey(title)){
+        return true;
+      } else {
+        return false;
+      }
+      }
 
     /**
      * checks if the book is available
@@ -100,8 +107,13 @@ public class Library extends Building{
       String book2 = "hello";
       library.addTitle(book);
       library.addTitle(book2);
-      library.checkout(book2);
+      library.checkOut(book2);
       library.printCollection();
+      library.returnBook(book2);
+      library.printCollection();
+      library.removeTitle(book2);
+      library.printCollection();
+      System.out.println(library.containsTitle(book2));
 
     }
   }

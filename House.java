@@ -1,7 +1,7 @@
 /* This is a stub for the House class */
 import java.util.ArrayList;
 
-public class House extends Building{
+public class House extends Building implements HouseRequirements{
   /**
    * Class attributes
    */
@@ -45,7 +45,11 @@ public class House extends Building{
    * @param s
    */
   public void moveIn(Student s){
+    if(!residents.contains(s)){
     residents.add(s);
+    } else {
+      System.out.println(s + " has already moved in.");
+    }
   }
 
 /**
@@ -76,8 +80,11 @@ public class House extends Building{
     Student s = new Student("A", "123", 2029);
     house.moveIn(s);
     System.out.println(house.nResidents());
+    System.out.println(house.isResident(s));
     house.moveOut(s);
     System.out.println(house.nResidents());
+    System.out.println(house.isResident(s));
+    System.out.println(house.hasDiningRoom());
   }
 
 }

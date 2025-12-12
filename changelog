@@ -1,0 +1,6 @@
+Implemented class House, Cafe, and Library requirements
+class Coffee sellCoffee() updated to public
+Added an if-else statement so class Library containsTitle method returns the correct boolean
+Added if-else to check if student has already moved in in class House movein()
+Deleted parameters in class Cafe restock() method because the restock values are set
+Changed checkout() method in class Library to checkOut()

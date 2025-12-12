@@ -1,8 +1,8 @@
 /* This is a stub for the Cafe class */
-public class Cafe extends Building{
+public class Cafe extends Building implements CafeRequirements{
 
     /*Class attributes */
-    int nCoffeeOunces;
+    int size;
     int nSugarPackets;
     int nCreams;
     int nCups;
@@ -12,14 +12,14 @@ public class Cafe extends Building{
      * @param name
      * @param address
      * @param nFloors
-     * @param nCoffeeOunces
+     * @param size
      * @param nSugarPackets
      * @param nCreams
      * @param nCups
      */
-    public Cafe(String name, String address, int nFloors, int nCoffeeOunces, int nSugarPackets, int nCreams, int nCups) {
+    public Cafe(String name, String address, int nFloors, int size, int nSugarPackets, int nCreams, int nCups) {
         super(name, address, nFloors);
-        this.nCoffeeOunces = nCoffeeOunces;
+        this.size = size;
         this.nSugarPackets = nSugarPackets;
         this.nCreams = nCreams;
         this.nCups = nCups;
@@ -28,36 +28,39 @@ public class Cafe extends Building{
     
     /**
      * Resets values to appropriate values after selling coffee
-     * @param nCoffeeOunces
+     * @param size
      * @param nSugarPackets
      * @param nCreams
      */
-    private void sellCoffee(int nCoffeeOunces, int nSugarPackets, int nCreams){
-        this.nCoffeeOunces -= nCoffeeOunces; 
+    public void sellCoffee(int size, int nSugarPackets, int nCreams){
+        this.size -= size; 
         this.nSugarPackets -= nSugarPackets;
         this.nCreams -= nCreams;
 
-        if(this.nCoffeeOunces < nCoffeeOunces || this.nSugarPackets < nSugarPackets || this.nCreams < nCreams){
-            restock(nCoffeeOunces, nSugarPackets, nCreams, nCups);
+        if(this.size < size || this.nSugarPackets < nSugarPackets || this.nCreams < nCreams){
+            restock();
         }
     }
 
     /**
      * restocks values when supplies are out
-     * @param nCoffeeOunces
+     * @param size
      * @param nSugarPackets
      * @param nCreams
-     * @param nCups
      */
-    private void restock(int nCoffeeOunces, int nSugarPackets, int nCreams, int nCups){
-        this.nCoffeeOunces = 50;
-        this.nSugarPackets = 50;
-        this.nCreams = 50;
-        this.nCups = 50;
+    private void restock(){
+        this.size = 70;
+        this.nSugarPackets = 70;
+        this.nCreams = 70;
     }
     /* Main method for testing */
     public static void main(String[] args) {
-        Cafe cafe = new Cafe("Cafe", "1010 Noho, MA", 3, 20, 13, 7, 15);
+        Cafe cafe = new Cafe("Cafe", "1010 Noho, MA", 3, 30, 30, 30, 30);
         cafe.sellCoffee(5,4,3);
+        System.out.println(cafe.size);
+        System.out.println(cafe.nSugarPackets);
+        System.out.println(cafe.nCreams);
+        cafe.restock();
+        System.out.println(cafe.size + " " + cafe.nCreams + " " + cafe.nCups + " " + cafe.nSugarPackets);
     }
 }
